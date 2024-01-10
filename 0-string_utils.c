@@ -106,7 +106,7 @@ char *trim(char *str)
 	if (trimmed == NULL)
 		return (NULL);
 
-	strncpy(trimmed, str + start, trim_len);
+	_strncpy(trimmed, str + start, trim_len);
 
 	return (trimmed);
 }
