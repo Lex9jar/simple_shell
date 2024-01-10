@@ -12,15 +12,15 @@ int main(__attribute__((unused))int ac, char *av[])
 	char *lineptr = NULL;
 	size_t n = 0;
 	char *argv[2];
-	char *f_name = av[0];
-
-	if (ac > 1)
-		exit(execute_commands(++av, f_name));
+	ssize_t get_n = 0;
 
 	while (INFINITE)
 	{
 		prompt();
-		if (getline(&lineptr, &n, stdin) <= 0)
+		get_n = (getline(&lineptr, &n, stdin));
+		if (get_n == EOF)
+			_EOF(lineptr);
+		else if (get_n == -1)
 		{
 			free(lineptr);
 			return (0);
@@ -34,7 +34,7 @@ int main(__attribute__((unused))int ac, char *av[])
 
 		if (_strcmp(argv[0], "\0") == 0)
 			continue;
-		execute_commands(argv, f_name);
+		execute_commands(argv, av[0]);
 
 		free(lineptr);
 		free(argv[0]);
@@ -43,4 +43,40 @@ int main(__attribute__((unused))int ac, char *av[])
 	}
 
 	return (0);
+}
+
+/**
+ * shell_printf - Simple print function
+ * @str: String to print
+ *
+ * Return: void.
+ */
+void shell_printf(char *str)
+{
+	write(STDIN_FILENO, str, _strlen(str));
+}
+
+/**
+ * prompt - Prints a prompt on the terminal
+ *
+ * Return: void.
+ */
+void prompt(void)
+{
+	shell_printf("#xcsh-$ ");
+}
+
+/**
+ * _EOF - Chaecks if the buffer is EOF
+ * @buffer: The pointer to the input string.
+ *
+ * Return: void
+ */
+void _EOF(char *lineptr)
+{
+	if (lineptr)
+		free(lineptr);
+	if (isatty(STDIN_FILENO))
+		shell_printf("\n");
+	exit(EXIT_SUCCESS);
 }
