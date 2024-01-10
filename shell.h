@@ -12,9 +12,13 @@
 #define _WIFEXITED(status) (((status) & 0xFF) == 0)
 #define _WEXITSTATUS(status) (((status) >> 8) & 0xFF)
 
+/* Environment Variable */
+extern char **environ;
+
 /* general_tools */
 void shell_printf(char *str);
 void prompt(void);
+void _EOF(char *lineptr);
 
 /* string_utils */
 size_t _strlen(char *str);
