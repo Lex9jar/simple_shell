@@ -110,3 +110,27 @@ char *trim(char *str)
 
 	return (trimmed);
 }
+
+/**
+ * word_count - Counts the number of words in the string
+ * @str: String to compute
+ * @delim: Delimiters for tokenization
+ *
+ * Return: Number of words in str.
+ */
+size_t word_count(char *str, const char *delim)
+{
+	size_t count = 0;
+	char *tmp = _strdup(str);
+
+	if (tmp == NULL)
+		return (-1);
+
+	strtok(tmp, delim);
+	count++;
+
+	while (strtok(NULL, delim))
+		count++;
+
+	return (count);
+}
