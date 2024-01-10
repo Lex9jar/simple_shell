@@ -94,5 +94,5 @@ void ctrl_c(int sig)
 	char *new_prompt = "\n#xcsh-$ ";
 
 	(void)sig;
-	write(STDIN_FILENO, new_prompt, _strlen(new_prompt));
+	shell_printf(new_prompt);
 }
