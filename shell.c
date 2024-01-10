@@ -14,6 +14,9 @@ int main(__attribute__((unused))int ac, char *av[])
 	char *argv[2];
 	char *f_name = av[0];
 
+	if (ac > 1)
+		exit(execute_commands(++av, f_name));
+
 	while (INFINITE)
 	{
 		prompt();
