@@ -13,6 +13,7 @@ int main(__attribute__((unused))int ac, char *av[])
 	size_t n = 0;
 	char *argv[2];
 	ssize_t get_n = 0;
+	char *trimmed;
 
 	signal(SIGINT, ctrl_c);
 	while (INFINITE)
@@ -21,26 +22,23 @@ int main(__attribute__((unused))int ac, char *av[])
 		get_n = (getline(&lineptr, &n, stdin));
 		if (get_n == EOF)
 			_EOF(lineptr);
-		else if (get_n == -1)
+		else if (*lineptr == '\n')
+			free(lineptr), lineptr = NULL, n = 0;
+		else
 		{
-			free(lineptr);
-			return (0);
+			trimmed = trim(lineptr);
+			if (trimmed == NULL)
+			{
+				free(trimmed), free(lineptr),
+					n = 0, lineptr = NULL;
+				continue;
+			}
+			argv[0] = trimmed;
+			argv[1] = NULL;
+			execute_commands(argv, av[0]);
+			free(lineptr), free(trimmed), n = 0, lineptr = NULL;
 		}
 
-		argv[0] = _strdup(lineptr);
-		if (argv[0] == NULL)
-			return (-1);
-		argv[1] = NULL;
-		argv[0][(_strlen(argv[0])) - 1] = '\0';
-
-		if (_strcmp(argv[0], "\0") == 0)
-			continue;
-		execute_commands(argv, av[0]);
-
-		free(lineptr);
-		free(argv[0]);
-		n = 0;
-		lineptr = NULL;
 		fflush(stdin);
 	}
 
