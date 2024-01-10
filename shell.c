@@ -7,13 +7,13 @@
  *
  * Return: On success 0, or an error value on failure.
  */
-int main(__attribute__((unused))int ac, char *av[])
+int main(int ac, char *av[])
 {
 	char *lineptr = NULL;
 	size_t n = 0;
-	char *argv[2];
 	ssize_t get_n = 0;
-	char *trimmed;
+
+	(void)ac;
 
 	while (INFINITE)
 	{
@@ -23,17 +23,8 @@ int main(__attribute__((unused))int ac, char *av[])
 			_EOF(lineptr);
 		else
 		{
-			trimmed = trim(lineptr);
-			if (trimmed == NULL)
-			{
-				free(trimmed), free(lineptr),
-					n = 0, lineptr = NULL;
-				continue;
-			}
-			argv[0] = trimmed;
-			argv[1] = NULL;
-			execute_commands(argv, av[0]);
-			free(lineptr), free(trimmed), n = 0, lineptr = NULL;
+			execute_commands(lineptr, av[0]);
+			free(lineptr), n = 0, lineptr = NULL;
 		}
 
 		fflush(stdin);
