@@ -60,7 +60,7 @@ void shell_printf(char *str)
  */
 void prompt(void)
 {
-	shell_printf("#xcsh-$ ");
+	shell_printf("#cisfun$ ");
 }
 
 /**
