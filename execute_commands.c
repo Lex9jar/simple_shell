@@ -2,12 +2,39 @@
 
 /**
  * execute_commands - Executes array of commands
- * @argv: Array of commands
+ * @lineptr: command to be executed
  * @f_name: Program name
  *
  * Return: On success 0, otherwise -1 upon failure.
  */
-int execute_commands(char **argv, char *f_name)
+int execute_commands(char *lineptr, char *f_name)
+{
+	char *argv[2];
+	size_t argc;
+
+	argc = word_count(lineptr, " ");
+
+	if (argc > 1)
+	{
+		fprintf(stderr, "%s: No such file or directory\n", f_name);
+		return (-1);
+	}
+	argv[0] = strtok(lineptr, " \n");
+	argv[1] = NULL;
+
+	if (_execve(argv, f_name) != 0)
+		return (-1);
+	return (0);
+}
+
+/**
+ * _execve - Executes an array of commands
+ * @argv: Array of commands to execute
+ * @f_name: Program's name
+ *
+ * Return: 0 upon Success, otherwise -1 upon failure.
+ */
+int _execve(char **argv, char *f_name)
 {
 	int status;
 	pid_t child;
