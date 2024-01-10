@@ -8,12 +8,13 @@
  */
 size_t _strlen(char *str)
 {
-        size_t len = 0;
+	size_t len = 0;
 
-        while (str[len])
-                len++;
-        return (len);
+	while (str[len])
+		len++;
+	return (len);
 }
+
 /**
  * _strcpy - copies a string from 'src' to 'dest'
  * @dest: destination
@@ -23,16 +24,17 @@ size_t _strlen(char *str)
  */
 char *_strcpy(char *dest, char *src)
 {
-        int i, len;
+	int i, len;
 
-        len = _strlen(src);
+	len = _strlen(src);
 
-        for (i = 0; i < len; i++)
-                dest[i] = src[i];
+	for (i = 0; i < len; i++)
+	dest[i] = src[i];
 
-        dest[i++] = '\0';
-        return (dest);
+	dest[i++] = '\0';
+	return (dest);
 }
+
 /**
  * _strdup - Returns a pointer to a newly allocated space in memory,
  * which contains a copy of the string given as a parameter.
@@ -42,29 +44,29 @@ char *_strcpy(char *dest, char *src)
  */
 char *_strdup(char *str)
 {
-        int len;
-        char *new_str;
+	int len;
+	char *new_str;
 
-        if (str == NULL)
-        {
-                errno = EINVAL;
-                perror("Error");
-                return (NULL);
-        }
+	if (str == NULL)
+	{
+		errno = EINVAL;
+		perror("Error");
+	return (NULL);
+	}
 
-        len = _strlen(str);
+	len = _strlen(str);
 
-        new_str = malloc(len + 1);
-        if (new_str == NULL)
-        {
-                errno = ENOMEM;
-                perror("Error");
-                return (NULL);
-        }
+	new_str = malloc(len + 1);
+	if (new_str == NULL)
+	{
+		errno = ENOMEM;
+		perror("Error");
+		return (NULL);
+	}
 
-        _strcpy(new_str, str);
+	_strcpy(new_str, str);
 
-        return (new_str);
+	return (new_str);
 }
 
 /**
@@ -77,12 +79,12 @@ char *_strdup(char *str)
  */
 int _strcmp(char *s1, char *s2)
 {
-        while (*s1 == *s2)
-        {
-                if (*s1 == '\0')
-                return (0);
-                s1++;
-                s2++;
-        }
-        return (*s1 - *s2);
+	while (*s1 == *s2)
+	{
+		if (*s1 == '\0')
+		return (0);
+		s1++;
+		s2++;
+	}
+	return (*s1 - *s2);
 }
