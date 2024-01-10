@@ -19,6 +19,7 @@ extern char **environ;
 void shell_printf(char *str);
 void prompt(void);
 void _EOF(char *lineptr);
+void ctrl_c(int sig);
 
 /* string_utils */
 size_t _strlen(char *str);
