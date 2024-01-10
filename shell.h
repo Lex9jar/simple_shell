@@ -31,6 +31,7 @@ size_t _strlen(char *str);
 char *_strcpy(char *dest, char *src);
 char *_strdup(char *str);
 int _strcmp(char *s1, char *s2);
+char *_strncpy(char *dest, char *src, size_t n);
 
 /* execute_commands */
 int execute_commands(char **argv, char *f_name);
