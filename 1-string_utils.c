@@ -51,7 +51,7 @@ char *_strdup(char *str)
 	{
 		errno = EINVAL;
 		perror("Error");
-	return (NULL);
+		return (NULL);
 	}
 
 	len = _strlen(str);
