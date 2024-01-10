@@ -67,7 +67,7 @@ git clone git@github.com:Lex9jar/simple_shell.git
 ## Compiling, Debugging and Runing
 - All of your and our programs and functions will be compiled with `gcc 4.8.4` using the flags `-Wall`, `-Werror`, `-Wextra`, `-pedantic` and `-std=gnu89`
 
-- To **compile** your functions use: `
+- To **compile** your functions use:
 
 ```
 gcc -Wall -Wextra -Werror -pedantic -Wno-format -g *.c -o hsh
@@ -87,14 +87,14 @@ Here are shown some examples of the usage of the Shell:
 
 - ls
 ```shell
-\#cisfun$ ls
+#cisfun$ ls
 0-string_utils.c  cmd                      hsh             out
 1-string_utils.c  cmd.sh                   i               shell.c
 2-getenv.c        execute_command.c        memory_utils.c  shell.h
 built_in.c        general_purpose_utils.c  modifiers.c     test_ls_2
 ```
 ```shell
-/#cisfun$ /bin/ls
+#cisfun$ /bin/ls
 0-string_utils.c  cmd                      hsh             out
 1-string_utils.c  cmd.sh                   i               shell.c
 2-getenv.c        execute_command.c        memory_utils.c  shell.h
@@ -102,7 +102,7 @@ built_in.c        general_purpose_utils.c  modifiers.c     test_ls_2
 ```
 
 ```shell
-\#cisfun$ ls -lat
+#cisfun$ ls -lat
 total 92
 drwxr-xr-x 2 lex lex  4096 Jan 10 08:38 .
 -rw-r--r-- 1 lex lex  2881 Jan 10 08:38 modifiers.c
@@ -126,13 +126,13 @@ drwxr-xr-x 7 lex lex  4096 Jan  9 23:10 ..
 - pwd
 
 ```shell
-\#cisfun$ pwd
+#cisfun$ pwd
 /home/lex/ALX_SCHOOL/shell/4-task
 ```
 
 - echo
 ```shell
-\#cisfun$ echo hello world
+#cisfun$ echo hello world
 hello world
 ```
 
