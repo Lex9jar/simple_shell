@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * main - A simple shell program
+ * main - A simple shell program.
  * @ac: Number of arguments passed to program
  * @av: Array of string passed to the program
  *
