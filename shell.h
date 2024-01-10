@@ -2,6 +2,7 @@
 #define _SHELL_H_
 
 #include <stdio.h>
+#include <stdbool.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
@@ -9,8 +10,6 @@
 #include <errno.h>
 
 #define INFINITE 1
-#define _WIFEXITED(status) (((status) & 0xFF) == 0)
-#define _WEXITSTATUS(status) (((status) >> 8) & 0xFF)
 
 /* Environment Variable */
 extern char **environ;
@@ -21,7 +20,13 @@ void prompt(void);
 void _EOF(char *lineptr);
 void ctrl_c(int sig);
 
-/* string_utils */
+/* 0-string_utils */
+size_t _strspn(char *s, const char *accept);
+size_t _strcspn(char *s, const char *reject);
+char *_strchr(const char *s, char c);
+char *trim(char *str);
+
+/* 1-string_utils */
 size_t _strlen(char *str);
 char *_strcpy(char *dest, char *src);
 char *_strdup(char *str);
