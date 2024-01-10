@@ -15,15 +15,12 @@ int main(__attribute__((unused))int ac, char *av[])
 	ssize_t get_n = 0;
 	char *trimmed;
 
-	signal(SIGINT, ctrl_c);
 	while (INFINITE)
 	{
 		prompt();
 		get_n = (getline(&lineptr, &n, stdin));
 		if (get_n == EOF)
 			_EOF(lineptr);
-		else if (*lineptr == '\n')
-			free(lineptr), lineptr = NULL, n = 0;
 		else
 		{
 			trimmed = trim(lineptr);
