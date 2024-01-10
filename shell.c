@@ -40,6 +40,7 @@ int main(__attribute__((unused))int ac, char *av[])
 		free(argv[0]);
 		n = 0;
 		lineptr = NULL;
+		fflush(stdin);
 	}
 
 	return (0);
