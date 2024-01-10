@@ -2,8 +2,8 @@
 
 /**
  * main - A simple shell program.
- * @ac: Number of arguments passed to program
- * @av: Array of string passed to the program
+ * @ac: Number of arguments passed to program.
+ * @av: Array of string passed to the program.
  *
  * Return: On success 0, or an error value on failure.
  */
