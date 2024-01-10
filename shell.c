@@ -14,6 +14,7 @@ int main(__attribute__((unused))int ac, char *av[])
 	char *argv[2];
 	ssize_t get_n = 0;
 
+	signal(SIGINT, ctrl_C);
 	while (INFINITE)
 	{
 		prompt();
@@ -69,7 +70,7 @@ void prompt(void)
 
 /**
  * _EOF - Chaecks if the buffer is EOF
- * @buffer: The pointer to the input string.
+ * @lineptr: The pointer to the input string.
  *
  * Return: void
  */
@@ -80,4 +81,19 @@ void _EOF(char *lineptr)
 	if (isatty(STDIN_FILENO))
 		shell_printf("\n");
 	exit(EXIT_SUCCESS);
+}
+
+/**
+ * ctrl_C - Handles Ctrl+C signal
+ * @sig: The signal to handle
+ *
+ * Return: void.
+ */
+void ctrl_C(int sig)
+{
+	char *new_prompt = "\n#xcsh-$ ";
+
+	(void)sig;
+	signal(SIGINT, sig_handler);
+	write(STDIN_FILENO, new_prompt, 3);
 }
