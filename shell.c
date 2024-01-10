@@ -14,7 +14,7 @@ int main(__attribute__((unused))int ac, char *av[])
 	char *argv[2];
 	ssize_t get_n = 0;
 
-	signal(SIGINT, ctrl_C);
+	signal(SIGINT, ctrl_c);
 	while (INFINITE)
 	{
 		prompt();
@@ -84,16 +84,15 @@ void _EOF(char *lineptr)
 }
 
 /**
- * ctrl_C - Handles Ctrl+C signal
+ * ctrl_c - Handles Ctrl+C signal
  * @sig: The signal to handle
  *
  * Return: void.
  */
-void ctrl_C(int sig)
+void ctrl_c(int sig)
 {
 	char *new_prompt = "\n#xcsh-$ ";
 
 	(void)sig;
-	signal(SIGINT, sig_handler);
-	write(STDIN_FILENO, new_prompt, 3);
+	write(STDIN_FILENO, new_prompt, _strlen(new_prompt));
 }
