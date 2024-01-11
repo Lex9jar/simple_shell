@@ -22,7 +22,7 @@ int main(int ac, char *av[])
 		if (get_n == EOF)
 		{
 			free(lineptr);
-			exit(EXIT_SUCCESS);
+			return(_return);
 		}
 		else
 			execute_commands(lineptr, av[0]);
@@ -30,7 +30,7 @@ int main(int ac, char *av[])
 		free(lineptr), n = 0, lineptr = NULL;
 	}
 
-	return (0);
+	return (_return);
 }
 
 /**
