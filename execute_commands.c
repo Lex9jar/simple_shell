@@ -20,6 +20,13 @@ int execute_commands(char *lineptr, char *f_name)
 	if (argv == NULL)
 		return (0);
 
+	/*
+	if (isatty(STDIN_FILENO) == 0)
+	{
+		fprintf(stderr, "%s: 1: %s: not found\n", f_name, argv[0]);
+		exit(127);
+	}
+	*/
 	_execve(argv, f_name);
 
 	free_array(argv, argc);
