@@ -73,45 +73,6 @@ char *_strchr(const char *s, char c)
 }
 
 /**
- * trim - Return a string that starts and end from a non space character
- * @str: string to compute
- *
- * Return: Pointer to trimed string.
- */
-char *trim(char *str)
-{
-	size_t length, trim_len, start, end;
-	char *trimmed;
-
-	if (str == NULL)
-		return (NULL);
-
-	length = _strlen(str);
-	while (start < length && (str[start] == ' ' ||
-				str[start] == '\t' || str[start] == '\n'
-				|| str[start] == '\r'))
-		start++;
-
-	end = length;
-	while (end > start && (str[end - 1] == ' ' ||
-				str[end - 1] == '\t' || str[end - 1] == '\n'
-				|| str[end - 1] == '\r'))
-		end--;
-
-	trim_len = end - start;
-	if (trim_len == 0)
-		return (NULL);
-
-	trimmed = malloc(trim_len + 1);
-	if (trimmed == NULL)
-		return (NULL);
-
-	_strncpy(trimmed, str + start, trim_len);
-
-	return (trimmed);
-}
-
-/**
  * word_count - Counts the number of words in the string
  * @str: String to compute
  * @delim: Delimiters for tokenization
@@ -134,4 +95,22 @@ size_t word_count(char *str, const char *delim)
 	free(tmp);
 
 	return (count);
+}
+
+/**
+ * _strcat - concatenates two strings
+ * @dest: Where to append string
+ * @src: String to append
+ *
+ * Return: Pointer to dest.
+ */
+char *_strcat(char *dest, char *src)
+{
+	size_t i, len = _strlen(dest);
+
+	for (i = 0; src[i]; i++, len++)
+		dest[len] = src[i];
+	dest[len] = '\0';
+
+	return (dest);
 }
