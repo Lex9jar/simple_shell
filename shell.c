@@ -22,11 +22,9 @@ int main(int ac, char *av[])
 		if (get_n == EOF)
 			_EOF(lineptr);
 		else
-		{
 			execute_commands(lineptr, av[0]);
-			free(lineptr), n = 0, lineptr = NULL;
-		}
 
+		free(lineptr), n = 0, lineptr = NULL;
 		fflush(stdin);
 	}
 
