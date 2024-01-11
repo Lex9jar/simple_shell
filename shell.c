@@ -20,12 +20,14 @@ int main(int ac, char *av[])
 		prompt();
 		get_n = (getline(&lineptr, &n, stdin));
 		if (get_n == EOF)
-			_EOF(lineptr);
+		{
+			free(lineptr);
+			exit(EXIT_SUCCESS);
+		}
 		else
 			execute_commands(lineptr, av[0]);
 
 		free(lineptr), n = 0, lineptr = NULL;
-		fflush(stdin);
 	}
 
 	return (0);
