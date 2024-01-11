@@ -12,17 +12,16 @@ int execute_commands(char *lineptr, char *f_name)
 	const char *delim = " \t\r\n";
 	size_t argc = word_count(lineptr, delim);
 	char **argv;
-	
+
 	if (argc == 0)
 		return (0);
-	
-	argv = generate_arg_vector(argc, lineptr, delim, f_name);
 
-	if (_execve(argv, f_name) != 0)
-	{
-		free_array(argv, argc);
-		return (-1);
-	}
+	argv = mod_lineptr(lineptr, argc, delim, f_name);
+	if (argv == NULL)
+		return (0);
+
+	_execve(argv, f_name);
+
 	free_array(argv, argc);
 
 	return (0);
