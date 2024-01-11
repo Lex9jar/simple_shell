@@ -125,12 +125,6 @@ char **mod_lineptr(char *lineptr, size_t size,
 	struct stat stat_ptr;
 	char **argv = generate_arg_vector(size, lineptr, delim, f_name);
 
-	if (isatty(STDIN_FILENO) == 0)
-	{
-		fprintf(stderr, "%s: 1: %s: not found\n", f_name, argv[0]);
-		exit(127);
-	}
-
 	if (stat(argv[0], &stat_ptr) == 0)
 		return (argv);
 
