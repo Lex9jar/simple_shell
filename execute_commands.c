@@ -11,19 +11,29 @@ int execute_commands(char *lineptr, char *f_name)
 {
 	char *argv[2];
 	size_t argc;
+	char *tmp = _strdup(lineptr);
 
-	argc = word_count(lineptr, " ");
+	argc = word_count(tmp, " \t\r\n");
+	free(tmp);
 
 	if (argc > 1)
 	{
 		fprintf(stderr, "%s: No such file or directory\n", f_name);
 		return (-1);
 	}
-	argv[0] = strtok(lineptr, " \n");
+	else if (argc == 0)
+		return (0);
+
+	tmp = _strdup(lineptr);
+	argv[0] = strtok(tmp, " \t\r\n");
 	argv[1] = NULL;
 
 	if (_execve(argv, f_name) != 0)
+	{
+		free(tmp);
 		return (-1);
+	}
+	free(tmp);
 	return (0);
 }
 
