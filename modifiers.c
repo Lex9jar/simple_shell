@@ -1,6 +1,8 @@
 #include "shell.h"
 #include <stdlib.h>
 
+int _return;
+
 /**
  * concate - Concatenates a file to a path
  * @path: Path to add
@@ -56,6 +58,7 @@ int add_path(char **cmd, char *f_name)
 			free(full_path);
 			free(path);
 			free(tmp);
+			_return = 0;
 			return (0);
 		}
 		free(full_path);
@@ -64,7 +67,9 @@ int add_path(char **cmd, char *f_name)
 	}
 	fprintf(stderr, "%s: 1: %s: not found\n", f_name, *cmd);
 	free(path);
-	exit(127);
+	_return = 127;
+
+	return (-1);
 }
 
 /**
