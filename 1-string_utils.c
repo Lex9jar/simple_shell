@@ -44,25 +44,12 @@ char *_strcpy(char *dest, char *src)
  */
 char *_strdup(char *str)
 {
-	int len;
+	size_t len = _strlen(str);
 	char *new_str;
-
-	if (str == NULL)
-	{
-		errno = EINVAL;
-		perror("Error");
-		return (NULL);
-	}
-
-	len = _strlen(str);
 
 	new_str = malloc(len + 1);
 	if (new_str == NULL)
-	{
-		errno = ENOMEM;
-		perror("Error");
 		return (NULL);
-	}
 
 	_strcpy(new_str, str);
 
