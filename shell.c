@@ -20,10 +20,9 @@ int main(int ac, char *av[])
 		prompt();
 		get_n = (getline(&lineptr, &n, stdin));
 		if (get_n == EOF)
-		{
-			free(lineptr);
-			return(_return);
-		}
+			_EOF(lineptr);
+		else if (_strcmp("exit\n", lineptr) == 0)
+			free(lineptr), exit(_return);
 		else
 			execute_commands(lineptr, av[0]);
 
@@ -66,7 +65,7 @@ void _EOF(char *lineptr)
 		free(lineptr);
 	if (isatty(STDIN_FILENO))
 		shell_printf("\n");
-	exit(EXIT_SUCCESS);
+	exit(_return);
 }
 
 /**
