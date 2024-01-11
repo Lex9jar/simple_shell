@@ -15,6 +15,7 @@
 
 /* Environment Variable */
 extern char **environ;
+extern int _return;
 
 /* general_tools */
 void shell_printf(char *str);
