@@ -35,8 +35,18 @@ char *_strdup(char *str);
 int _strcmp(char *s1, char *s2);
 char *_strncpy(char *dest, char *src, size_t n);
 
+/* modifiers_utils */
+char **generate_arg_vector(size_t argv, char *cmd_line,
+		const char *delim, char *f_name);
+
 /* execute_commands */
 int execute_commands(char *lineptr, char *f_name);
 int _execve(char **argv, char *f_name);
+
+/* memory_utils */
+void free_array(char **array, size_t size);
+
+/* error_msg */
+void _enomem(char *f_name);
 
 #endif /* _SHELL_H_ */
