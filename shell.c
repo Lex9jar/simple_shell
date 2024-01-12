@@ -60,7 +60,7 @@ void prompt(void)
 /**
  * _EOF - Chaecks if the buffer is EOF
  * @lineptr: The pointer to the input string.
- * @_return: Exit value
+ * @_return: Exit value.
  *
  * Return: void
  */
