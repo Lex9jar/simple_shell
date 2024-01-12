@@ -28,11 +28,6 @@ int main(int ac, char *av[])
 			free(lineptr);
 			break;
 		}
-		else if (_strcmp("exit\n", lineptr) == 0)
-		{
-			free(lineptr);
-			break;
-		}
 		else if (_strcmp("env", lineptr) == 0 ||
 				_strcmp("printenv", lineptr) == 0)
 			_printenv();
