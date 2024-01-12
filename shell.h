@@ -20,7 +20,7 @@ extern int _return;
 /* general_tools */
 void shell_printf(char *str);
 void prompt(void);
-void _EOF(char *lineptr);
+void _EOF(char *lineptr, int _return);
 void ctrl_c(int sig);
 
 /* 0-string_utils */
@@ -40,17 +40,17 @@ char *_strncpy(char *dest, char *src, size_t n);
 /* modifiers_utils */
 void concate(char *path, char *cmd_line,
 		char **fullpath, char *f_name);
-int add_path(char **cmd, char *f_name);
+int add_path(char **cmd, char *f_name, int *_return);
 char **generate_arg_vector(size_t argc, char *cmd_line,
 		const char *delim, char *f_name);
 char **mod_lineptr(char *lineptr, size_t size,
-		const char *delim, char *f_name);
+		const char *delim, char *f_name, int *_return);
 
 /* others */
 char *_getenv(char *name);
 
 /* execute_commands */
-int execute_commands(char *lineptr, char *f_name);
+int execute_commands(char *lineptr, char *f_name, int *_return);
 int _execve(char **argv, char *f_name);
 
 /* memory_utils */
