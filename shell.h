@@ -18,7 +18,7 @@ extern char **environ;
 extern int _return;
 
 /* general_tools */
-void shell_printf(char *str);
+void s_printf(char *str);
 void prompt(void);
 void _EOF(char *lineptr, int _return);
 void ctrl_c(int sig);
@@ -52,6 +52,9 @@ char *_getenv(char *name);
 /* execute_commands */
 int execute_commands(char *lineptr, char *f_name, int *_return);
 int _execve(char **argv, char *f_name);
+
+/* built_in */
+void _printenv(void);
 
 /* memory_utils */
 char *_realloc(char *str, size_t size);
