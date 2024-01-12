@@ -44,7 +44,7 @@ int add_path(char **cmd, char *f_name, int *_return)
 	if (path == NULL)
 		_enomem(f_name);
 
-	token = strtok(path, ":");
+	token = _strtok(path, ":");
 	while (token)
 	{
 		concate(token, *cmd, &full_path, f_name);
@@ -62,7 +62,7 @@ int add_path(char **cmd, char *f_name, int *_return)
 		}
 		free(full_path);
 		full_path = NULL;
-		token = strtok(NULL, ":");
+		token = _strtok(NULL, ":");
 	}
 	fprintf(stderr, "%s: 1: %s: not found\n", f_name, *cmd);
 	free(path);
@@ -99,14 +99,14 @@ char **generate_arg_vector(size_t argc, char *cmd_line,
 		_enomem(f_name);
 	}
 
-	token = strtok(lineptr, delim);
+	token = _strtok(lineptr, delim);
 	while (token)
 	{
 		argv[i] = _strdup(token);
 		if (argv[i] == NULL)
 			_enomem(f_name);
 		i++;
-		token = strtok(NULL, delim);
+		token = _strtok(NULL, delim);
 	}
 	argv[i] = NULL;
 	free(lineptr);
