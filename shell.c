@@ -15,7 +15,8 @@ int main(int ac, char *av[])
 	int _return = 0;
 
 	environ = dup_env(av[0]);
-
+	signal(SIGINT, handle_Ctrl_C);
+	signal(SIGTSTP, handle_Ctrl_L);
 	(void)ac;
 
 	while (INFINITE)
@@ -59,18 +60,4 @@ void _EOF(char *lineptr, int _return)
 	if (isatty(STDIN_FILENO))
 		s_printf("\n");
 	exit(_return);
-}
-
-/**
- * ctrl_c - Handles Ctrl+C signal
- * @sig: The signal to handle
- *
- * Return: void.
- */
-void ctrl_c(int sig)
-{
-	char *new_prompt = "\n#xcsh-$ ";
-
-	(void)sig;
-	s_printf(new_prompt);
 }
