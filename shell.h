@@ -46,7 +46,8 @@ char **generate_arg_vector(size_t argc, char *cmd_line,
 char **mod_lineptr(char *lineptr, size_t size,
 		const char *delim, char *f_name, int *_return);
 
-/* others */
+/* environ */
+char **dup_env(char *f_name);
 char *_getenv(char *name);
 
 /* execute_commands */
@@ -59,6 +60,7 @@ void _printenv(void);
 /* memory_utils */
 char *_realloc(char *str, size_t size);
 void free_array(char **array, size_t size);
+void free_env(void);
 
 /* error_msg */
 void _enomem(char *f_name);
