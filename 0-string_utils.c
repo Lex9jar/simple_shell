@@ -87,10 +87,10 @@ size_t word_count(char *str, const char *delim)
 	if (tmp == NULL)
 		return (-1);
 
-	if (strtok(tmp, delim) != NULL)
+	if (_strtok(tmp, delim) != NULL)
 		count++;
 
-	while (strtok(NULL, delim))
+	while (_strtok(NULL, delim))
 		count++;
 	free(tmp);
 
