@@ -12,10 +12,15 @@
 #include <errno.h>
 
 #define INFINITE 1
+#define CHUNK 120
 
 /* Environment Variable */
 extern char **environ;
 extern int _return;
+
+/* signals */
+void handle_Ctrl_C(int sig);
+void handle_Ctrl_L(int sig);
 
 /* general_tools */
 void s_printf(char *str);
