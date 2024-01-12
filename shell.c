@@ -14,6 +14,8 @@ int main(int ac, char *av[])
 	ssize_t get_n = 0;
 	int _return = 0;
 
+	environ = dup_env(av[0]);
+
 	(void)ac;
 
 	while (INFINITE)
@@ -21,7 +23,10 @@ int main(int ac, char *av[])
 		prompt();
 		get_n = (getline(&lineptr, &n, stdin));
 		if (get_n == EOF)
-			_EOF(lineptr, _return);
+		{
+			free(lineptr);
+			break;
+		}
 		else if (_strcmp("exit\n", lineptr) == 0)
 		{
 			free(lineptr);
@@ -36,6 +41,7 @@ int main(int ac, char *av[])
 		free(lineptr), n = 0, lineptr = NULL;
 	}
 
+	free_env();
 	return (_return);
 }
 
