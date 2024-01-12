@@ -129,6 +129,25 @@ char **mod_lineptr(char *lineptr, size_t size,
 {
 	struct stat stat_ptr;
 	char **argv = generate_arg_vector(size, lineptr, delim, f_name);
+	int val;
+
+	if (_strcmp("exit", argv[0]) == 0)
+	{
+		if (size > 1)
+		{
+			val = atoi(argv[1]);
+			if (val == -1)
+			{
+				fprintf(stderr, "%s: 1: exit: Illegal number: %d\n", f_name, val);
+				*_return = 2;
+				return (NULL);
+			}
+			else
+				exit(atoi(argv[1]));
+		}
+		else
+			exit(*_return);
+	}
 
 	if (stat(argv[0], &stat_ptr) == 0)
 		return (argv);
