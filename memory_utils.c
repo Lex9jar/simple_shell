@@ -45,3 +45,18 @@ void free_array(char **array, size_t size)
 		free(array[i]);
 	free(array);
 }
+
+/**
+ * free_env - Frees environ
+ *
+ * Return: void.
+ */
+void free_env(void)
+{
+	size_t i = 0;
+
+	for (i = 0; environ[i]; i++)
+		free(environ[i]);
+	free(environ);
+	environ = NULL;
+}
