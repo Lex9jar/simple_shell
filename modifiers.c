@@ -1,8 +1,6 @@
 #include "shell.h"
 #include <stdlib.h>
 
-int _return;
-
 /**
  * concate - Concatenates a file to a path
  * @path: Path to add
@@ -32,10 +30,11 @@ void concate(char *path, char *cmd, char **full_path, char *f_name)
  * add_path - searches and add appropriate path to a file
  * @cmd: File to search path for
  * @f_name: Program's name
+ * @_return: Variable to hold process value
  *
  * Return: On success 0, otherwise -1 upon failure.
  */
-int add_path(char **cmd, char *f_name)
+int add_path(char **cmd, char *f_name, int *_return)
 {
 	char *path, *token, *env, *full_path = NULL, *tmp = *cmd;
 	struct stat stat_ptr;
@@ -58,7 +57,7 @@ int add_path(char **cmd, char *f_name)
 			free(full_path);
 			free(path);
 			free(tmp);
-			_return = 0;
+			*_return = 0;
 			return (0);
 		}
 		free(full_path);
@@ -67,7 +66,7 @@ int add_path(char **cmd, char *f_name)
 	}
 	fprintf(stderr, "%s: 1: %s: not found\n", f_name, *cmd);
 	free(path);
-	_return = 127;
+	*_return = 127;
 
 	return (-1);
 }
@@ -121,11 +120,12 @@ char **generate_arg_vector(size_t argc, char *cmd_line,
  * @size: Size of array
  * @delim: Delimeter to tokenization
  * @f_name: Program name.
+ * @_return: variable to hold process value
  *
  * Return: Pointer to an array of commands, or NULL is failed.
  */
 char **mod_lineptr(char *lineptr, size_t size,
-		const char *delim, char *f_name)
+		const char *delim, char *f_name, int *_return)
 {
 	struct stat stat_ptr;
 	char **argv = generate_arg_vector(size, lineptr, delim, f_name);
@@ -133,7 +133,7 @@ char **mod_lineptr(char *lineptr, size_t size,
 	if (stat(argv[0], &stat_ptr) == 0)
 		return (argv);
 
-	if (add_path(&argv[0], f_name) == 0)
+	if (add_path(&argv[0], f_name, _return) == 0)
 		return (argv);
 
 	free_array(argv, size);
