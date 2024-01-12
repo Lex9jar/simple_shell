@@ -4,10 +4,11 @@
  * execute_commands - Executes array of commands
  * @lineptr: command to be executed
  * @f_name: Program name
+ * @_return: variable to hold process value
  *
  * Return: On success 0, otherwise -1 upon failure.
  */
-int execute_commands(char *lineptr, char *f_name)
+int execute_commands(char *lineptr, char *f_name, int *_return)
 {
 	const char *delim = " \t\r\n";
 	size_t argc = word_count(lineptr, delim);
@@ -16,11 +17,11 @@ int execute_commands(char *lineptr, char *f_name)
 	if (argc == 0)
 		return (0);
 
-	argv = mod_lineptr(lineptr, argc, delim, f_name);
+	argv = mod_lineptr(lineptr, argc, delim, f_name, _return);
 	if (argv == NULL)
 		return (0);
 
-	_execve(argv, f_name);
+	*_return = _execve(argv, f_name);
 
 	free_array(argv, argc);
 
@@ -32,11 +33,11 @@ int execute_commands(char *lineptr, char *f_name)
  * @argv: Array of commands to execute
  * @f_name: Program's name
  *
- * Return: 0 upon Success, otherwise -1 upon failure.
+ * Return: 0 upon Success, otherwise error value
  */
 int _execve(char **argv, char *f_name)
 {
-	int status;
+	int status, exit_status;
 	pid_t child;
 
 	child = fork();
@@ -54,6 +55,10 @@ int _execve(char **argv, char *f_name)
 	}
 	else
 		wait(&status);
+	if (WIFEXITED(status))
+		exit_status = status;
+	if (exit_status != 0)
+		exit_status = 2;
 
-	return (0);
+	return (exit_status);
 }
