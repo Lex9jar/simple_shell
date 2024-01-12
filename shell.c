@@ -12,6 +12,7 @@ int main(int ac, char *av[])
 	char *lineptr = NULL;
 	size_t n = 0;
 	ssize_t get_n = 0;
+	int _return = 0;
 
 	(void)ac;
 
@@ -20,11 +21,14 @@ int main(int ac, char *av[])
 		prompt();
 		get_n = (getline(&lineptr, &n, stdin));
 		if (get_n == EOF)
-			_EOF(lineptr);
+			_EOF(lineptr, _return);
 		else if (_strcmp("exit\n", lineptr) == 0)
-			free(lineptr), exit(_return);
+		{
+			free(lineptr);
+			break;
+		}
 		else
-			execute_commands(lineptr, av[0]);
+			execute_commands(lineptr, av[0], &_return);
 
 		free(lineptr), n = 0, lineptr = NULL;
 	}
@@ -56,10 +60,11 @@ void prompt(void)
 /**
  * _EOF - Chaecks if the buffer is EOF
  * @lineptr: The pointer to the input string.
+ * @_return: Exit value
  *
  * Return: void
  */
-void _EOF(char *lineptr)
+void _EOF(char *lineptr, int _return)
 {
 	if (lineptr)
 		free(lineptr);
