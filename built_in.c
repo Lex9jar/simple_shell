@@ -13,5 +13,6 @@ void _printenv(void)
 	{
 		s_printf(environ[i]);
 		s_printf("\n");
+		i++;
 	}
 }
