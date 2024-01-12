@@ -27,34 +27,18 @@ int main(int ac, char *av[])
 			free(lineptr);
 			break;
 		}
+		else if (_strcmp("env", lineptr) == 0)
+			_printenv();
 		else
+		{
+			s_printf("At execute\n");
 			execute_commands(lineptr, av[0], &_return);
+		}
 
 		free(lineptr), n = 0, lineptr = NULL;
 	}
 
 	return (_return);
-}
-
-/**
- * shell_printf - Simple print function
- * @str: String to print
- *
- * Return: void.
- */
-void shell_printf(char *str)
-{
-	write(STDIN_FILENO, str, _strlen(str));
-}
-
-/**
- * prompt - Prints a prompt on the terminal
- *
- * Return: void.
- */
-void prompt(void)
-{
-	shell_printf("#cisfun$ ");
 }
 
 /**
@@ -69,7 +53,7 @@ void _EOF(char *lineptr, int _return)
 	if (lineptr)
 		free(lineptr);
 	if (isatty(STDIN_FILENO))
-		shell_printf("\n");
+		s_printf("\n");
 	exit(_return);
 }
 
@@ -84,5 +68,5 @@ void ctrl_c(int sig)
 	char *new_prompt = "\n#xcsh-$ ";
 
 	(void)sig;
-	shell_printf(new_prompt);
+	s_printf(new_prompt);
 }
