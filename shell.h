@@ -18,6 +18,9 @@
 extern char **environ;
 extern int _return;
 
+/* Advance Tasks */
+char *_strtok(char *str, const char *delim);
+
 /* signals */
 void handle_Ctrl_C(int sig);
 void handle_Ctrl_L(int sig);
