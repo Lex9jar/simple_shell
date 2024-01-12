@@ -3,7 +3,7 @@
 /**
  * dup_env - Makes the duplicate of environ
  * @f_name: Program's name
- * 
+ *
  * Return: Pointer to an array of environment variable
  */
 char **dup_env(char *f_name)
@@ -11,7 +11,8 @@ char **dup_env(char *f_name)
 	char **new_env;
 	size_t i;
 
-	for (i = 0; environ[i]; i++);
+	for (i = 0; environ[i]; i++)
+		;
 
 	new_env = malloc(sizeof(char *) * (i + 1));
 	if (new_env == NULL)
