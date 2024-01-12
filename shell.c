@@ -31,10 +31,7 @@ int main(int ac, char *av[])
 				_strcmp("printenv", lineptr) == 0)
 			_printenv();
 		else
-		{
-			s_printf("At execute\n");
 			execute_commands(lineptr, av[0], &_return);
-		}
 
 		free(lineptr), n = 0, lineptr = NULL;
 	}
