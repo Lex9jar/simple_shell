@@ -30,6 +30,7 @@ void s_printf(char *str);
 void prompt(void);
 void _EOF(char *lineptr, int _return);
 void ctrl_c(int sig);
+int _atoi(char *str);
 
 /* 0-string_utils */
 size_t _strspn(char *s, const char *accept);
