@@ -64,6 +64,7 @@ int _execve(char **argv, char *f_name);
 
 /* built_in */
 void _printenv(void);
+int exit_shell(char **argv, size_t argc, char *f_name, int *_return);
 
 /* memory_utils */
 char *_realloc(char *str, size_t size);
