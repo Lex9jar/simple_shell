@@ -136,7 +136,7 @@ char **mod_lineptr(char *lineptr, size_t size,
 		if (size > 1)
 		{
 			val = atoi(argv[1]);
-			if (val == -1)
+			if (val < 0)
 			{
 				fprintf(stderr, "%s: 1: exit: Illegal number: %d\n", f_name, val);
 				*_return = 2;
