@@ -6,13 +6,14 @@
  *
  * Return: Number derived
  */
-int _atoi(char str)
+int _atoi(char *str)
 {
 	int i, len, num, digit, flg, opr;
 
 	i = 0, len = 0, opr = 0, num = 0, digit = 0, flg = 0;
 
-	len = _strlen(str);
+	while (str[len])
+		len++;
 
 	while (i < len && flg == 0)
 	{
@@ -26,7 +27,7 @@ int _atoi(char str)
 				digit = -digit;
 			num = num * 10 + digit;
 			flg = 1;
-			if str[i + 1] < '0' || str[i + 1] > '9')
+			if (str[i + 1] < '0' || str[i + 1] > '9')
 				break;
 			flg = 0;
 		}
